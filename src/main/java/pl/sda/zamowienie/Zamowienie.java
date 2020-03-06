@@ -1,13 +1,18 @@
 package pl.sda.zamowienie;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Zamowienie {
+    private List<Pozycja> elements = new ArrayList<>();
     private Pozycja[] pozycje;
     private int ileDodanych;
+    private int id;
+
+    public List<Pozycja> getElements() {
+        return elements;
+    }
+
     private int maksRozmiar;
 
     public Zamowienie() {
@@ -20,10 +25,12 @@ public class Zamowienie {
         this.maksRozmiar = maksRozmiar;
         ileDodanych = 0;
         pozycje = new Pozycja[this.maksRozmiar];
+
     }
 
     public void dodajPozycje(Pozycja p){
         pozycje[ileDodanych] = p;
+        elements.add(p);
         ++ileDodanych;
     }
     public double obliczWartosc(){
@@ -32,6 +39,19 @@ public class Zamowienie {
             suma += pozycje[x].obliczWartosc();
         }
         return suma;
+    }
+    public void eksportJSON(){
+        int x = 1;
+        String filename = "Zamowienie_"+x+ ".json";
+        x++;
+        JSONUtils json = new JSONUtils();
+        json.writeList(filename, getElements());
+    }
+    public void importJSON(int orderNumber){
+        String filename = "Zamowienie_"+ orderNumber + ".json";
+        System.out.println(filename);
+        JSONUtils json = new JSONUtils();
+        json.readList(filename);
     }
     public String toString(){
         String a,b,c,d;

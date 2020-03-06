@@ -7,6 +7,9 @@ public class Pozycja {
     private int ileSztuk;
     private double cena;
 
+    public Pozycja() {
+    }
+    
     public Pozycja(String nazwaTowaru, int ileSztuk, double cena) {
         this.nazwaTowaru = nazwaTowaru;
         this.ileSztuk = ileSztuk;
@@ -40,6 +43,7 @@ public class Pozycja {
     public double obliczWartosc(){
         return ileSztuk*cena;
     }
+
     public String toString(){
         String a, b, c, d;
         a = String.format("%-20s", nazwaTowaru);

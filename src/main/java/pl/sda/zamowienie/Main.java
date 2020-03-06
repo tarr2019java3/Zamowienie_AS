@@ -13,7 +13,9 @@ public class Main {
         z.dodajPozycje(order1);
         z.dodajPozycje(order2);
         z.dodajPozycje(order3);
-        System.out.println(z.toString());
-        System.out.println(String.format("%.2f",z.obliczWartosc()));
+//        System.out.println(z.toString());
+//        System.out.println(String.format("%.2f",z.obliczWartosc()));
+        z.eksportJSON();
+        z.importJSON(1);
     }
 }
